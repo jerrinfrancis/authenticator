@@ -1,0 +1,14 @@
+syntax = "proto3";
+package authenticator;
+option go_package = "github.com/jerrinfrancis/authenticator";
+message UserInfo{
+  string email = 1;
+  string passwd = 2;
+}
+
+message Token{
+  string token = 1;
+}
+service Authenticator{
+  rpc Login(UserInfo) returns (Token);
+}
