@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"fmt"
+
 	"github.com/dgrijalva/jwt-go"
 	"github.com/jerrinfrancis/authenticator/db"
 	"github.com/jerrinfrancis/authenticator/db/mongo"
@@ -33,6 +34,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		claims["exp"] = time.Now().Add(time.Hour * 72).Unix()
 		fmt.Println("DUI > ID", du.ID, du.Secret)
 		claims["sub"] = du.ID
+		claims["test"] = "jerrin"
 		token.Claims = claims
 		tokenString, err := token.SignedString([]byte(secret))
 		if err != nil {
